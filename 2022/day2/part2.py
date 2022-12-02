@@ -13,8 +13,8 @@ class Them(Enum):
 
 class Counter(Enum):
     X = {Them.A: 3, Them.B: 1, Them.C: 2} # Lose
-    Y = {Them.A: 1, Them.B: 2, Them.C: 3} # Draw
-    Z = {Them.A: 2, Them.B: 3, Them.C: 1} # Win
+    Y = {Them.A: 1+3, Them.B: 2+3, Them.C: 3+3} # Draw
+    Z = {Them.A: 2+6, Them.B: 3+6, Them.C: 1+6} # Win
 
 lines = map(lambda x: x.strip(), fileinput.input())
 
@@ -23,12 +23,7 @@ for line in lines:
     t, u = line.split(" ")
     t = Them[t]
     u = Counter[u]
-    if u == Counter.X:
-        my_scores.append(u.value[t])
-    elif u == Counter.Y:
-        my_scores.append(u.value[t] + 3)
-    else:
-        my_scores.append(u.value[t] + 6)
+    my_scores.append(u.value[t])
 
 print(my_scores)
 print(sum(my_scores))
