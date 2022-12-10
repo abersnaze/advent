@@ -23,4 +23,4 @@ for i in range(len(content)):
     if diff == 3:
         threes += 1
 
-print(ones, '*', threes, '=', ones*threes)
+print(ones, "*", threes, "=", ones * threes)

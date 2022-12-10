@@ -13,17 +13,17 @@ content = list(map(parse_line, fileinput.input()))
 
 
 def rotate(facing, dir, amount):
-    news = ['E', 'N', 'W', 'S']
-    if dir == 'R':
-        return rotate(facing, 'L', 360 - amount)
+    news = ["E", "N", "W", "S"]
+    if dir == "R":
+        return rotate(facing, "L", 360 - amount)
     x = news.index(facing)
-    r = int(amount/90)
+    r = int(amount / 90)
     y = (x + r) % 4
     # print('\t', x, '+', '∆'+str(r), '=', y)
     return news[y]
 
 
-facing = 'E'
+facing = "E"
 curr = (0, 0)
 
 # test rotate
@@ -39,17 +39,17 @@ curr = (0, 0)
 # print(rotate(facing, 'R', 360), 'E')
 
 for cmd, amount in content:
-    if cmd == 'L' or cmd == 'R':
+    if cmd == "L" or cmd == "R":
         facing = rotate(facing, cmd, amount)
-    if cmd == 'F':
+    if cmd == "F":
         cmd = facing
-    if cmd == 'E':
+    if cmd == "E":
         curr = (curr[0] + amount, curr[1])
-    if cmd == 'W':
+    if cmd == "W":
         curr = (curr[0] - amount, curr[1])
-    if cmd == 'N':
+    if cmd == "N":
         curr = (curr[0], curr[1] + amount)
-    if cmd == 'S':
+    if cmd == "S":
         curr = (curr[0], curr[1] - amount)
 
 print(curr, abs(curr[0]) + abs(curr[1]))

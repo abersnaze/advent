@@ -11,7 +11,8 @@ from typing import List
 lines = list(map(lambda x: x.strip(), fileinput.input()))
 
 xmin, xmax, ymin, ymax = re.match(
-    r"target area: x=(-?\d+)..(-?\d+), y=(-?\d+)..(-?\d+)", lines[0]).groups()
+    r"target area: x=(-?\d+)..(-?\d+), y=(-?\d+)..(-?\d+)", lines[0]
+).groups()
 
 xmin = int(xmin)
 xmax = int(xmax)
@@ -36,11 +37,11 @@ def hit(dx, dy):
 
 print(xmin, xmax, ymin, ymax)
 
-dxmin = int(-0.5 + math.sqrt(0.25 + 2*xmin)) + 1
+dxmin = int(-0.5 + math.sqrt(0.25 + 2 * xmin)) + 1
 
 count = 0
-for dx in range(dxmin, xmax+1):
-    for dy in range(ymin-1, 300):
+for dx in range(dxmin, xmax + 1):
+    for dy in range(ymin - 1, 300):
         pymax = hit(dx, dy)
         if pymax is not None:
             count += 1

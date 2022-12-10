@@ -9,7 +9,7 @@ from itertools import islice
 
 lines = map(lambda x: x.strip(), fileinput.input())
 
-draws = list(map(int, next(lines).split(',')))
+draws = list(map(int, next(lines).split(",")))
 next(lines)
 
 
@@ -37,7 +37,18 @@ def blank():
 
 
 def bingo(marks):
-    a = [True,True,True,True,True,True,True,True,True,True,]
+    a = [
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+        True,
+    ]
     for i in range(0, 5):
         a[0] &= marks[0][i]
         a[1] &= marks[1][i]
@@ -51,11 +62,12 @@ def bingo(marks):
         a[9] &= marks[i][4]
     return any(a)
 
+
 min = len(draws)
 answer = 0
 for board in boards():
     marks = blank()
-    for i, draw in enumerate( draws):
+    for i, draw in enumerate(draws):
         for x in range(0, 5):
             for y in range(0, 5):
                 if board[y][x] == draw:
@@ -74,4 +86,3 @@ for board in boards():
         answer = s * draw
 
 print(answer)
-

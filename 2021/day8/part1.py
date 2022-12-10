@@ -11,9 +11,9 @@ lines = map(lambda x: x.strip(), fileinput.input())
 
 sum = 0
 for line in lines:
-    patterns, digits = line.split('|')
-    patterns = map(lambda p: "".join(sorted(p)), patterns.strip().split(' '))
-    digits = map(lambda p: "".join(sorted(p)), digits.strip().split(' '))
+    patterns, digits = line.split("|")
+    patterns = map(lambda p: "".join(sorted(p)), patterns.strip().split(" "))
+    digits = map(lambda p: "".join(sorted(p)), digits.strip().split(" "))
 
     mapping = {}
 

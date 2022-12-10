@@ -16,9 +16,9 @@ for y, line in enumerate(lines):
         risk = int(risk)
         for tx in range(5):
             for ty in range(5):
-                r = risk + tx+ty
+                r = risk + tx + ty
                 r = (r - 1) % 9 + 1
-                risks[(x + size*tx, y + size*ty)] = r
+                risks[(x + size * tx, y + size * ty)] = r
 
 cumulative = defaultdict(lambda: math.inf)
 cumulative[(0, 0)] = 0
@@ -26,10 +26,10 @@ cumulative[(0, 0)] = 0
 
 def adjacent(x, y):
     return [
-        (x-0, y+1),
-        (x-1, y+0),
-        (x+0, y-1),
-        (x+1, y-0),
+        (x - 0, y + 1),
+        (x - 1, y + 0),
+        (x + 0, y - 1),
+        (x + 1, y - 0),
     ]
 
 
@@ -39,7 +39,7 @@ def dump():
             r = cumulative[(x, y)]
             # print(risks[(x,y)], end="")
             if math.isinf(r):
-                print('.', end=" ")
+                print(".", end=" ")
             else:
                 print(r, end=" ")
         print()

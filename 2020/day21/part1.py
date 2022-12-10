@@ -5,12 +5,12 @@ import re
 from collections import defaultdict
 import sys
 
-pattern = re.compile('(.*) \(contains (.*)\)')
+pattern = re.compile("(.*) \(contains (.*)\)")
 recipes = []
 for line in map(lambda x: x.strip(), fileinput.input()):
     ingredients, allergens = pattern.match(line).groups()
-    ingredients = set(ingredients.split(' '))
-    allergens = set(allergens.split(', '))
+    ingredients = set(ingredients.split(" "))
+    allergens = set(allergens.split(", "))
     print(ingredients, ":", allergens)
     recipes.append((ingredients, allergens))
 

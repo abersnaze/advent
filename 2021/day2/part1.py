@@ -6,6 +6,7 @@ from collections import defaultdict, Counter
 import sys
 from enum import Enum
 
+
 class Dir(Enum):
     forward = (1, 0)
     down = (0, 1)
@@ -14,7 +15,7 @@ class Dir(Enum):
 
 curr = (0, 0)
 for line in map(lambda x: x.strip(), fileinput.input()):
-    dir, amount = line.split(' ')
+    dir, amount = line.split(" ")
 
     d = Dir[dir]
     a = int(amount)

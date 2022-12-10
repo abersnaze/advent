@@ -19,10 +19,9 @@ def only(f, i: iter):
 
 actual = []
 for i, line in enumerate(lines):
-    patterns, digits = line.split('|')
-    patterns = list(map(lambda p: "".join(sorted(p)),
-                        patterns.strip().split(' ')))
-    digits = list(map(lambda p: "".join(sorted(p)), digits.strip().split(' ')))
+    patterns, digits = line.split("|")
+    patterns = list(map(lambda p: "".join(sorted(p)), patterns.strip().split(" ")))
+    digits = list(map(lambda p: "".join(sorted(p)), digits.strip().split(" ")))
 
     mapping_235 = list()
     mapping_069 = list()
@@ -48,12 +47,22 @@ for i, line in enumerate(lines):
     mapping_2 = only(lambda x: len(set(x) - set(mapping_9)) != 0, mapping_235)
     mapping_5 = only(lambda x: x != mapping_3 and x != mapping_2, mapping_235)
 
-    mapping = [mapping_0, mapping_1, mapping_2, mapping_3, mapping_4,
-               mapping_5, mapping_6, mapping_7, mapping_8, mapping_9, ]
+    mapping = [
+        mapping_0,
+        mapping_1,
+        mapping_2,
+        mapping_3,
+        mapping_4,
+        mapping_5,
+        mapping_6,
+        mapping_7,
+        mapping_8,
+        mapping_9,
+    ]
 
     display = 0
     for digit in digits:
-        display = display*10 + mapping.index(digit)
+        display = display * 10 + mapping.index(digit)
 
     print(display)
     actual.append(display)

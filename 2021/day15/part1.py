@@ -21,10 +21,10 @@ cumulative[(0, 0)] = 0
 
 def adjacent(x, y):
     return [
-        (x-0, y+1),
-        (x-1, y+0),
-        (x+0, y-1),
-        (x+1, y-0),
+        (x - 0, y + 1),
+        (x - 1, y + 0),
+        (x + 0, y - 1),
+        (x + 1, y - 0),
     ]
 
 
@@ -33,7 +33,7 @@ def dump():
         for x in range(size):
             r = cumulative[(x, y)]
             if math.isinf(r):
-                print('.', end=" ")
+                print(".", end=" ")
             else:
                 print(r, end=" ")
         print()

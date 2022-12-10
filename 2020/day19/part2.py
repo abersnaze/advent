@@ -108,12 +108,27 @@ for line in map(lambda x: x.strip(), fileinput.input()):
             one = And("42", "31")
             two = And("42", And("42", And("31", "31")))
             three = And("42", And("42", And("42", And("31", And("31", "31")))))
-            four = And("42", And("42", And("42", And("42", And("31", And("31", And("31", "31")))))))
-            five = And("42", And("42", And("42", And("42", And("42", And("31", And("31", And("31", And("31", "31")))))))))
+            four = And(
+                "42",
+                And("42", And("42", And("42", And("31", And("31", And("31", "31")))))),
+            )
+            five = And(
+                "42",
+                And(
+                    "42",
+                    And(
+                        "42",
+                        And(
+                            "42",
+                            And("42", And("31", And("31", And("31", And("31", "31"))))),
+                        ),
+                    ),
+                ),
+            )
             rule = Or(one, Or(two, Or(three, Or(four, five))))
         elif "|" in parts:
             idx = parts.index("|")
-            rule = Or(link(parts[:idx]), link(parts[idx+1:]))
+            rule = Or(link(parts[:idx]), link(parts[idx + 1 :]))
         else:
             rule = link(parts)
         rules[id] = rule

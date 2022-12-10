@@ -91,7 +91,7 @@ for line in map(lambda x: x.strip(), fileinput.input()):
             rule = Terminal(parts[0][1])
         elif "|" in parts:
             idx = parts.index("|")
-            rule = Or(link(parts[:idx]), link(parts[idx+1:]))
+            rule = Or(link(parts[:idx]), link(parts[idx + 1 :]))
         else:
             rule = link(parts)
         rules[id] = rule

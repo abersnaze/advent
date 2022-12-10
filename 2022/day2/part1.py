@@ -6,17 +6,20 @@ from collections import defaultdict, Counter
 from enum import Enum
 from itertools import islice, product
 
+
 class Them(Enum):
-    A = 1 # Rock
-    B = 2 # Paper
-    C = 3 # Scissors
+    A = 1  # Rock
+    B = 2  # Paper
+    C = 3  # Scissors
+
 
 class Us(Enum):
-    X = 1 # Rock
-    Y = 2 # Paper
-    Z = 3 # Scissors
+    X = 1  # Rock
+    Y = 2  # Paper
+    Z = 3  # Scissors
 
-win = { (2, 1), (3, 2), (1, 3) }
+
+win = {(2, 1), (3, 2), (1, 3)}
 
 lines = map(lambda x: x.strip(), fileinput.input())
 

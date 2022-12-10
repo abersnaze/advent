@@ -12,20 +12,20 @@ dbls = set()
 
 lines = map(lambda x: x.strip(), fileinput.input())
 for line in lines:
-    start, end = line.split('-')
+    start, end = line.split("-")
     edges[start].append(end)
     edges[end].append(start)
     if start.lower() == start:
         dbls.add(start)
     if end.lower() == end:
         dbls.add(end)
-dbls.remove('start')
-dbls.remove('end')
+dbls.remove("start")
+dbls.remove("end")
 
 
 def visit(allowd_twice):
     finished = []
-    unfinished = [['start']]
+    unfinished = [["start"]]
     while unfinished:
         path = unfinished.pop()
         for dst in edges[path[-1]]:
@@ -36,7 +36,7 @@ def visit(allowd_twice):
                 continue
             nxt = path.copy()
             nxt.append(dst)
-            if dst == 'end':
+            if dst == "end":
                 finished.append(tuple(nxt))
             else:
                 unfinished.append(nxt)

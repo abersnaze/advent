@@ -9,19 +9,22 @@ content = sys.stdin.readlines()
 
 wraper = defaultdict(list)
 
-p = re.compile('(.*) bags contain (.*).')
-q = re.compile('(\d+) (.*) bags?')
+p = re.compile("(.*) bags contain (.*).")
+q = re.compile("(\d+) (.*) bags?")
 for rule in content:
     outside, conts = p.match(rule.strip()).groups()
-    insides = [q.match(x.strip()).groups() for x in conts.split(
-        ',')] if conts != 'no other bags' else []
+    insides = (
+        [q.match(x.strip()).groups() for x in conts.split(",")]
+        if conts != "no other bags"
+        else []
+    )
     print(f"'{outside}'", "->", insides)
     for inside in insides:
         wraper[inside[1]].append(outside)
 
 print(json.dumps(wraper, indent="  "))
 
-unchecked = set(['shiny gold'])
+unchecked = set(["shiny gold"])
 checked = set()
 valid = set()
 

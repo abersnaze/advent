@@ -48,4 +48,3 @@ for i in range(len(diffs)):
         ones = 0
 # multiple all the posibilities
 print("runs", runs, reduce(mul, runs, 1))
-

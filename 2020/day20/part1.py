@@ -7,38 +7,48 @@ import sys
 
 
 class Tile:
-    def __init__(self, id, edge_n, ):
+    def __init__(
+        self,
+        id,
+        edge_n,
+    ):
         self.edgesN = edges
 
     def rotate(self):
-        return Tile([
-            self.edges[1][::-1],
-            self.edges[2],
-            self.edges[3][::-1],
-            self.edges[0],
-        ])
+        return Tile(
+            [
+                self.edges[1][::-1],
+                self.edges[2],
+                self.edges[3][::-1],
+                self.edges[0],
+            ]
+        )
 
     def flip_v(self):
-        return Tile([
-            self.edges[2],
-            self.edges[1][::-1],
-            self.edges[0],
-            self.edges[3][::-1],
-        ])
+        return Tile(
+            [
+                self.edges[2],
+                self.edges[1][::-1],
+                self.edges[0],
+                self.edges[3][::-1],
+            ]
+        )
 
     def flip_h(self):
-        return Tile([
-            self.edges[0][::-1],
-            self.edges[3],
-            self.edges[2][::-1],
-            self.edges[1],
-        ])
+        return Tile(
+            [
+                self.edges[0][::-1],
+                self.edges[3],
+                self.edges[2][::-1],
+                self.edges[1],
+            ]
+        )
 
     def __repr__(self):
         l = len(self.edges[0])
         lines = ["".join(self.edges[0])]
-        for i in range(1, l-1):
-            lines.append(self.edges[1][i] + (" "*(l - 2)) + self.edges[3][i])
+        for i in range(1, l - 1):
+            lines.append(self.edges[1][i] + (" " * (l - 2)) + self.edges[3][i])
         lines.append("".join(self.edges[2]))
         return f"Tile {str(self.id)}\n" + "\n".join(lines)
 
@@ -55,8 +65,8 @@ for line in map(lambda x: x.strip(), fileinput.input()):
         for i in range(l):
             edges[0] += pixels[0][i]
             edges[1] += pixels[i][0]
-            edges[2] += pixels[l-1][i]
-            edges[3] += pixels[i][l-1]
+            edges[2] += pixels[l - 1][i]
+            edges[3] += pixels[i][l - 1]
         # tile = Tile(id, edges)
         foo[edges[0]].append(id)
         foo[edges[1]].append(id)
@@ -78,7 +88,9 @@ for line in map(lambda x: x.strip(), fileinput.input()):
     else:
         pixels.append(line)
 
-edge_tiles = Counter(list(map(lambda ids: ids[0], filter(lambda ids: len(ids) == 1, foo.values()))))
+edge_tiles = Counter(
+    list(map(lambda ids: ids[0], filter(lambda ids: len(ids) == 1, foo.values())))
+)
 print(edge_tiles)
 
 total = 1

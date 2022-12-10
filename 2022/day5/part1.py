@@ -13,7 +13,7 @@ for line in lines:
     if "[" in line:
         for i in range(1, len(line), 4):
             if line[i] != " ":
-                stacks[1 + (i-1)//4].insert(0, line[i])
+                stacks[1 + (i - 1) // 4].insert(0, line[i])
     if line.startswith("move"):
         _, n, _, fm, _, to = line.strip().split(" ")
         moves.append((int(n), int(fm), int(to)))

@@ -5,13 +5,13 @@ import re
 from collections import defaultdict
 import sys
 
-ACTIVE = '#'
-INACTIVE = '.'
+ACTIVE = "#"
+INACTIVE = "."
 space = defaultdict(lambda: INACTIVE)
 
 for y, line in enumerate(map(lambda x: x.strip(), fileinput.input())):
     for x, point in enumerate(line):
-        if point == '#':
+        if point == "#":
             space[(x, y, 0, 0)] = point
 
 
@@ -27,10 +27,10 @@ def write(s):
     minw = min([p[3] for p in active])
     maxw = max([p[3] for p in active])
     for w in range(minw, maxw + 1):
-        for z in range(minz, maxz+1):
+        for z in range(minz, maxz + 1):
             sys.stdout.write(f"z={z}, w={w}\n")
-            for y in range(miny, maxy+1):
-                for x in range(minx, maxx+1):
+            for y in range(miny, maxy + 1):
+                for x in range(minx, maxx + 1):
                     v = s[(x, y, z, w)]
                     if v == ACTIVE:
                         count += 1
@@ -43,20 +43,28 @@ def write(s):
 
 def all(s):
     active = map(lambda p: p[0], filter(lambda p: p[1] == ACTIVE, s.items()))
-    return set([(x+dx, y+dy, z+dz, w+dw)
-                for x, y, z, w in active
-                for dx in [-1, 0, 1]
-                for dy in [-1, 0, 1]
-                for dz in [-1, 0, 1]
-                for dw in [-1, 0, 1]])
+    return set(
+        [
+            (x + dx, y + dy, z + dz, w + dw)
+            for x, y, z, w in active
+            for dx in [-1, 0, 1]
+            for dy in [-1, 0, 1]
+            for dz in [-1, 0, 1]
+            for dw in [-1, 0, 1]
+        ]
+    )
 
 
 def adjacent(p):
-    x = set([(p[0]+dx, p[1]+dy, p[2]+dz, p[3]+dw)
-             for dx in [-1, 0, 1]
-             for dy in [-1, 0, 1]
-             for dz in [-1, 0, 1]
-             for dw in [-1, 0, 1]])
+    x = set(
+        [
+            (p[0] + dx, p[1] + dy, p[2] + dz, p[3] + dw)
+            for dx in [-1, 0, 1]
+            for dy in [-1, 0, 1]
+            for dz in [-1, 0, 1]
+            for dw in [-1, 0, 1]
+        ]
+    )
     x.remove(p)
     assert len(x) == 80
     return x
@@ -79,16 +87,16 @@ while round < 6:
         if space[p] == ACTIVE:
             if count == 2 or count == 3:
                 next_space[p] = ACTIVE
-                sys.stdout.write(' keep\n')
+                sys.stdout.write(" keep\n")
             else:
                 next_space[p] = INACTIVE
-                sys.stdout.write(' off\n')
+                sys.stdout.write(" off\n")
         else:
             if count == 3:
                 next_space[p] = ACTIVE
-                sys.stdout.write(' on\n')
+                sys.stdout.write(" on\n")
             else:
-                sys.stdout.write(' skip\n')
+                sys.stdout.write(" skip\n")
         sys.stdout.flush()
 
     space = next_space

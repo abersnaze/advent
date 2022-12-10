@@ -6,7 +6,7 @@ import re
 content = sys.stdin.readlines()
 
 # you may also want to remove whitespace characters like `\n` at the end of each line
-p = re.compile('(\d+)-(\d+) (\w): (\w+)')
+p = re.compile("(\d+)-(\d+) (\w): (\w+)")
 content = [p.match(x).groups() for x in content]
 # tuple low, high, letter, password
 

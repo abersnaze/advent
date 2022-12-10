@@ -13,9 +13,9 @@ drive = {}
 for line in lines:
     if line.startswith("$ cd"):
         dir = line[5:]
-        if dir == '..':
+        if dir == "..":
             cwd.pop()
-        elif dir == '/':
+        elif dir == "/":
             cwd = []
         else:
             cwd.append(dir)
@@ -34,6 +34,7 @@ for line in lines:
 print(drive)
 total = 0
 
+
 def walk(drive: dict, path):
     global total
     sum = 0
@@ -46,6 +47,7 @@ def walk(drive: dict, path):
         print(sum, path)
         total += sum
     return sum
+
 
 walk(drive, [])
 print(total)

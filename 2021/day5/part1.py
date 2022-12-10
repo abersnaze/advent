@@ -25,9 +25,7 @@ for line in lines:
     if y1 > y2:
         y1, y2 = y2, y1
 
-    counts.update({(x, y): 1
-                   for x in range(x1, x2+1)
-                   for y in range(y1, y2+1)})
+    counts.update({(x, y): 1 for x in range(x1, x2 + 1) for y in range(y1, y2 + 1)})
 
 # didn't bother printing anything but the example
 for y in range(10):

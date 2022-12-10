@@ -6,25 +6,25 @@ import re
 insts = list(fileinput.input())
 
 opcode = {
-    'acc': lambda acc, inst_ptr, value: (acc + value, inst_ptr + 1),
-    'jmp': lambda acc, inst_ptr, value: (acc, inst_ptr + value),
-    'nop': lambda acc, inst_ptr, value: (acc, inst_ptr + 1)
+    "acc": lambda acc, inst_ptr, value: (acc + value, inst_ptr + 1),
+    "jmp": lambda acc, inst_ptr, value: (acc, inst_ptr + value),
+    "nop": lambda acc, inst_ptr, value: (acc, inst_ptr + 1),
 }
 
-p = re.compile('(\w\w\w) ([+-]\d+)\n')
+p = re.compile("(\w\w\w) ([+-]\d+)\n")
 
 
 def run(swap):
     insts_copy = list(insts)
     swap_inst = insts_copy[swap]
-    if swap_inst.startswith('acc'):
+    if swap_inst.startswith("acc"):
         print("skip")
         return None
     else:
-        if swap_inst.startswith('jmp'):
-            insts_copy[swap] = swap_inst.replace('jmp', 'nop')
-        if swap_inst.startswith('nop'):
-            insts_copy[swap] = swap_inst.replace('nop', 'jmp')
+        if swap_inst.startswith("jmp"):
+            insts_copy[swap] = swap_inst.replace("jmp", "nop")
+        if swap_inst.startswith("nop"):
+            insts_copy[swap] = swap_inst.replace("nop", "jmp")
 
     prev_inst_ptr = set()
     acc = 0

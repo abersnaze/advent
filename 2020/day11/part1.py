@@ -15,14 +15,14 @@ def occupied(x, y):
     if x < 0 or y < 0:
         return 0
     try:
-        return 1 if content[y][x] == '#' else 0
+        return 1 if content[y][x] == "#" else 0
     except IndexError:
         return 0
 
 
 def available(x, y):
     global content
-    return content[y][x] == 'L'
+    return content[y][x] == "L"
 
 
 def crowd(x, y):

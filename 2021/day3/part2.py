@@ -14,7 +14,7 @@ def count_up(lines):
     for line in lines:
         total += 1
         for i, bit in enumerate(line):
-            if bit == '1':
+            if bit == "1":
                 bits[i] += 1
         # print(bits)
     return total, bits
@@ -34,7 +34,7 @@ def whittle(prefix: str, most: bool):
     i = len(prefix)
     count = bits[i]
 
-    if count >= total/2:
+    if count >= total / 2:
         if most:
             return whittle(prefix + "1", most)
         else:
@@ -49,4 +49,4 @@ def whittle(prefix: str, most: bool):
 o2 = whittle("", True)
 co2 = whittle("", False)
 
-print(o2, '*', co2, '=', o2 * co2)
+print(o2, "*", co2, "=", o2 * co2)

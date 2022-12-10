@@ -5,18 +5,16 @@ import re
 from collections import defaultdict
 
 
-mask_patter = re.compile('mask = ([X01]{36})')
-mem_patter = re.compile('mem\[(\d+)\] = (\d+)\n')
+mask_patter = re.compile("mask = ([X01]{36})")
+mem_patter = re.compile("mem\[(\d+)\] = (\d+)\n")
 mem = defaultdict(lambda: 0)
 mask = None
 for line in fileinput.input():
     match = mask_patter.match(line)
     if match:
-        bits_set = "".join(
-            ['1' if x == '1' else '0' for x in match.groups()[0]])
-        bits_float = "".join(
-            ['1' if x == 'X' else '0' for x in match.groups()[0]])
-        print("mask", bits_set, bits_float.replace('0', '-'))
+        bits_set = "".join(["1" if x == "1" else "0" for x in match.groups()[0]])
+        bits_float = "".join(["1" if x == "X" else "0" for x in match.groups()[0]])
+        print("mask", bits_set, bits_float.replace("0", "-"))
         mask = (int(bits_set, 2), int(bits_float, 2))
     else:
         match = mem_patter.match(line)
@@ -38,7 +36,7 @@ for line in fileinput.input():
                     addrs = [b | a for a in addrs for b in [0, bit]]
                 bit <<= 1
             for a in addrs:
-                
+
                 mem[a] = value
 
 print(len(mem.values()))

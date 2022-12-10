@@ -11,7 +11,7 @@ import statistics
 
 lines = map(lambda x: x.strip(), fileinput.input())
 depths = [int(x) for x in next(lines).split(",")]
-fuel = lambda d: d*(d + 1)/2
+fuel = lambda d: d * (d + 1) / 2
 align = statistics.median(depths)
 
 done = False

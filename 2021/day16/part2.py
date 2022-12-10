@@ -17,7 +17,7 @@ def bits(line):
     byts = bytes.fromhex(line)
     for i in range(len(byts)):
         for b in range(7, -1, -1):
-            yield((byts[i] >> b) & 1)
+            yield ((byts[i] >> b) & 1)
 
 
 bs = bits(lines[0])
@@ -91,7 +91,7 @@ class Op(Pkt):
     def str(self, indent) -> str:
         s = f"{indent}O(v:{self.pver}, t:{self.ptype}, s:{self.size} [\n"
         for x in self.sub:
-            s += x.str(indent+"  ")+"\n"
+            s += x.str(indent + "  ") + "\n"
         s += f"{indent}])"
         return s
 

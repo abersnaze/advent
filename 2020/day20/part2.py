@@ -19,13 +19,40 @@ class Tile:
         self.swap = swap
 
     def rotate(self):
-        return Tile(self.pixels, self.edge_w[::-1], self.edge_s, self.edge_e[::-1], self.edge_n, self.dy, -self.dx, not self.swap)
+        return Tile(
+            self.pixels,
+            self.edge_w[::-1],
+            self.edge_s,
+            self.edge_e[::-1],
+            self.edge_n,
+            self.dy,
+            -self.dx,
+            not self.swap,
+        )
 
     def flip_v(self):
-        return Tile(self.pixels, self.edge_s, self.edge_w[::-1], self.edge_n, self.edge_e[::-1], self.dx, -self.dy, self.swap)
+        return Tile(
+            self.pixels,
+            self.edge_s,
+            self.edge_w[::-1],
+            self.edge_n,
+            self.edge_e[::-1],
+            self.dx,
+            -self.dy,
+            self.swap,
+        )
 
     def flip_h(self):
-        return Tile(self.pixels, self.edge_n[::-1], self.edge_e, self.edge_s[::-1], self.edge_w, -self.dx, self.dy, self.swap)
+        return Tile(
+            self.pixels,
+            self.edge_n[::-1],
+            self.edge_e,
+            self.edge_s[::-1],
+            self.edge_w,
+            -self.dx,
+            self.dy,
+            self.swap,
+        )
 
     def get(self, x, y):
         m = x * self.dx if not self.swap else y * self.dy
@@ -35,7 +62,7 @@ class Tile:
     def __repr__(self):
         l = len(self.pixels)
         out = ""
-        out += "\n\t"+ self.edge_n + "-n"
+        out += "\n\t" + self.edge_n + "-n"
         ys = list(range(0, l)) if self.dy > 0 else list(reversed(range(0, l)))
         xs = list(range(0, l)) if self.dx > 0 else list(reversed(range(0, l)))
         if not self.swap:
@@ -48,9 +75,9 @@ class Tile:
                 out += "\n\t"
                 for y in ys:
                     out += self.pixels[y][x]
-        out += "\n\t"+ self.edge_s + "-s"
-        out += "\n\t"+ self.edge_e + "-e"
-        out += "\n\t"+ self.edge_w + "-w"
+        out += "\n\t" + self.edge_s + "-s"
+        out += "\n\t" + self.edge_e + "-e"
+        out += "\n\t" + self.edge_w + "-w"
         return out
 
 
@@ -101,8 +128,14 @@ for line in map(lambda x: x.strip(), fileinput.input()):
 
 # find edge or rev(edge) that don't have a match (aka image edges)
 print("######################################")
-edge_tiles = Counter(list(map(lambda ids: ids[0], list(
-    filter(lambda ids: len(ids) == 1, id_by_edge.values())))))
+edge_tiles = Counter(
+    list(
+        map(
+            lambda ids: ids[0],
+            list(filter(lambda ids: len(ids) == 1, id_by_edge.values())),
+        )
+    )
+)
 edge_tiles = sorted(edge_tiles, key=edge_tiles.__getitem__, reverse=True)
 print("edge_tiles", edge_tiles)
 
@@ -112,7 +145,7 @@ class Mosaic:
         self.tiles = []
         self.size = size
         for i in range(0, L):
-            self.tiles.append([None]*L)
+            self.tiles.append([None] * L)
 
     def __repr__(self):
         l = 10
@@ -120,18 +153,18 @@ class Mosaic:
         out = "\n\t"
         for y in range(L):
             i = y
-            ty = int(i/l)
+            ty = int(i / l)
             py = i % l
             tout = ""
             for x in range(L):
                 j = x
-                tx = int(j/l)
+                tx = int(j / l)
                 px = j % l
                 t = self.tiles[ty][tx]
-                out += t.get(px, py) if t else '_'
-            out += '\n\t'
+                out += t.get(px, py) if t else "_"
+            out += "\n\t"
         else:
-            out += '\n'
+            out += "\n"
         return out
 
     def __getitem__(self, i):
@@ -150,7 +183,7 @@ unused = unused + list(set(tiles_by_id.keys()).difference(unused))
 
 def slices(xs):
     for i in range(len(xs)):
-        yield xs[i], xs[:i] + xs[i+1:]
+        yield xs[i], xs[:i] + xs[i + 1 :]
 
 
 def permut_tile(tile: Tile):
@@ -176,7 +209,7 @@ def match(tile, x, y):
         print("\t<", tile.edge_w, "==", mosaic[y][x - 1].edge_e)
         if tile.edge_w != mosaic[y][x - 1].edge_e:
             return False
-    if x < L-1 and mosaic[y][x + 1]:
+    if x < L - 1 and mosaic[y][x + 1]:
         print("\t>", tile.edge_e, "==", mosaic[y][x + 1].edge_w)
         if tile.edge_e == mosaic[y][x + 1].edge_w:
             return False
@@ -184,7 +217,7 @@ def match(tile, x, y):
         print("\t^", tile.edge_n, "==", mosaic[y - 1][x].edge_s)
         if tile.edge_n == mosaic[y - 1][x].edge_s:
             return False
-    if y < L-1 and mosaic[y + 1][x]:
+    if y < L - 1 and mosaic[y + 1][x]:
         print("\tv", tile.edge_s, "==", mosaic[y + 1][x].edge_n)
         if tile.edge_s == mosaic[y + 1][x].edge_n:
             return False
@@ -219,6 +252,7 @@ def fill_mosaic(x, y, unused):
     return False
 
 
-unused = reversed(['1951', '2311', '3079', '2729',
-                   '1427', '2473', '2971', '1489', '1171'])
+unused = reversed(
+    ["1951", "2311", "3079", "2729", "1427", "2473", "2971", "1489", "1171"]
+)
 fill_mosaic(0, 0, list(unused))

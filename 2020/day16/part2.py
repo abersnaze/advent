@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 import json
 
-rule_pattern = re.compile('(.*): (.*)-(.*) or (.*)-(.*)')
+rule_pattern = re.compile("(.*): (.*)-(.*) or (.*)-(.*)")
 
 rules = defaultdict(list)
 your_ticket = None
@@ -30,7 +30,7 @@ for line in map(lambda x: x.strip(), fileinput.input()):
             rules[n].append(name)
         # print(name, a, b, c, d)
     else:
-        ticket = list(map(int, line.split(',')))
+        ticket = list(map(int, line.split(",")))
         # print(your, ticket)
         if your:
             your_ticket = ticket

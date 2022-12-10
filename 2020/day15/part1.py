@@ -19,10 +19,11 @@ def run(order: list, count, end):
         if len(order) % 10000 == 0:
             print(len(order))
 
-    print(order[0], '=', end)
+    print(order[0], "=", end)
+
 
 for case in fileinput.input():
-    starts, count, end = case.split(':')
-    starts = list(map(int, starts.split(',')))
+    starts, count, end = case.split(":")
+    starts = list(map(int, starts.split(",")))
     starts.reverse()
     run(starts, int(count), int(end.strip()))

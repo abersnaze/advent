@@ -46,8 +46,12 @@ for line in lines:
         scanner.graph.sort(key=lambda edge: edge[0])
         scanners[scanner_key].beacons[bid1] = bcord1
 
-scanner_pairs = list(map(tuple, filter(
-    lambda id: id[0] < id[1], product(scanners.keys(), scanners.keys()))))
+scanner_pairs = list(
+    map(
+        tuple,
+        filter(lambda id: id[0] < id[1], product(scanners.keys(), scanners.keys())),
+    )
+)
 
 
 def find_alignment(potental, matches):
@@ -131,7 +135,6 @@ for said, sbid in scanner_pairs:
 
     print(said, sbid, len(alignment), len(sb.beacons))
 
-print("count of beacon coords", sum(
-    map(lambda s: len(s.beacons), scanners.values())))
+print("count of beacon coords", sum(map(lambda s: len(s.beacons), scanners.values())))
 print("count of beacon mappings", len(beacons))
 print("count of unique beacons", len(set(beacons.values())))

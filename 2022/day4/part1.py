@@ -8,17 +8,18 @@ from itertools import islice, product
 
 lines = map(lambda x: x.strip(), fileinput.input())
 
+
 def elf_assignment(s) -> set:
-    start, end = s.split('-')
-    return set(range(int(start), int(end)+1))
+    start, end = s.split("-")
+    return set(range(int(start), int(end) + 1))
+
 
 total = 0
 for line in lines:
-    a, b = line.split(',')
+    a, b = line.split(",")
     a = elf_assignment(a)
     b = elf_assignment(b)
     if a.issubset(b) or b.issubset(a):
         total += 1
 
 print(total)
-

@@ -18,14 +18,14 @@ for y, line in enumerate(lines):
 def adjacent(a):
     x, y = a
     return [
-        (x+1, y+1),
-        (x+0, y+1),
-        (x-1, y+1),
-        (x-1, y+0),
-        (x-1, y-1),
-        (x+0, y-1),
-        (x+1, y-1),
-        (x+1, y+0),
+        (x + 1, y + 1),
+        (x + 0, y + 1),
+        (x - 1, y + 1),
+        (x - 1, y + 0),
+        (x - 1, y - 1),
+        (x + 0, y - 1),
+        (x + 1, y - 1),
+        (x + 1, y + 0),
     ]
 
 
@@ -42,12 +42,11 @@ def dump(m, default):
 total = 0
 for step in range(100):
     dump(octopi, "-")
-    nxt = {xy: v+1 for xy, v in octopi.items()}
+    nxt = {xy: v + 1 for xy, v in octopi.items()}
     done = False
     flashed = set()
     while not done:
-        flashing = set([xy for xy, v in nxt.items()
-                        if v > 9 and v not in flashed])
+        flashing = set([xy for xy, v in nxt.items() if v > 9 and v not in flashed])
         print(flashing)
         if not flashing:
             total += len(flashed)

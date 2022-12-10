@@ -18,9 +18,9 @@ def steps(s, e, l):
     if s == e:
         out = [s for i in range(l + 1)]
     elif s > e:
-        out = list(range(s, e-1, -1))
+        out = list(range(s, e - 1, -1))
     else:
-        out = list(range(s, e+1, 1))
+        out = list(range(s, e + 1, 1))
     return out
 
 
@@ -33,9 +33,9 @@ for line in lines:
     length = max(abs(x1 - x2), abs(y1 - y2))
 
     # switch to using zip with a custom range function
-    counts.update({coords: 1
-                   for coords in zip(steps(x1, x2, length),
-                                     steps(y1, y2, length))})
+    counts.update(
+        {coords: 1 for coords in zip(steps(x1, x2, length), steps(y1, y2, length))}
+    )
 
 # didn't bother printing anything but the example
 for y in range(10):

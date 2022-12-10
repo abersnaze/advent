@@ -6,13 +6,13 @@ import re
 insts = list(fileinput.input())
 
 opcode = {
-    'acc': lambda acc, inst_ptr, value: (acc + value, inst_ptr + 1),
-    'jmp': lambda acc, inst_ptr, value: (acc, inst_ptr + value),
-    'nop': lambda acc, inst_ptr, value: (acc, inst_ptr + 1)
+    "acc": lambda acc, inst_ptr, value: (acc + value, inst_ptr + 1),
+    "jmp": lambda acc, inst_ptr, value: (acc, inst_ptr + value),
+    "nop": lambda acc, inst_ptr, value: (acc, inst_ptr + 1),
 }
 
 prev_inst_ptr = set()
-p = re.compile('(\w\w\w) ([+-]\d+)\n')
+p = re.compile("(\w\w\w) ([+-]\d+)\n")
 
 acc = 0
 inst_ptr = 0

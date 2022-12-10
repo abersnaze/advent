@@ -8,10 +8,12 @@ from itertools import islice, product
 
 line = next(fileinput.input())
 
+
 def find_start(s):
     for i in range(0, len(s) - 14):
-        if len(set(s[i:i+14])) == 14:
+        if len(set(s[i : i + 14])) == 14:
             return i + 14
+
 
 print(find_start("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19)
 print(find_start("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23)

@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 import sys
 
-pattern = re.compile('Player \d+:')
+pattern = re.compile("Player \d+:")
 game = {}
 count = 0
 for line in map(lambda x: x.strip(), fileinput.input()):
@@ -25,8 +25,9 @@ def winner(g):
     leader = max([(p[0], len(p[1])) for p in g.items()], key=lambda x: x[1])
     print("leader", leader, count)
     if leader[1] == count:
-        cards = list(map(lambda x: (x[0]+1) * x[1],
-                         enumerate(reversed(g[leader[0]]))))
+        cards = list(
+            map(lambda x: (x[0] + 1) * x[1], enumerate(reversed(g[leader[0]])))
+        )
         print("winning cards", cards)
         return (leader, sum(cards))
     return None
@@ -47,13 +48,14 @@ def do_round(g):
     print("round winner is", high_player, "with", high_card)
     g[high_player].extend(sorted(cards, reverse=True))
 
+
 prev = set()
 w = winner(game)
 while not w:
     # no repeats
     state = tuple(map(tuple, game.values()))
     if state in prev:
-        print('repeat', game)
+        print("repeat", game)
         break
     prev.add(state)
 

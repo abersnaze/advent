@@ -12,20 +12,20 @@ content = list(map(parse_line, fileinput.input()))
 
 def get(x, y):
     if x < 0 or y < 0:
-        return ' '
+        return " "
     global content
     try:
         return content[y][x]
     except IndexError:
-        return ' '
+        return " "
 
 
 def occupied(x, y):
-    return 1 if get(x, y) == '#' else 0
+    return 1 if get(x, y) == "#" else 0
 
 
 def available(x, y):
-    return get(x, y) == 'L'
+    return get(x, y) == "L"
 
 
 def gaze(x0, dx, y0, dy):
@@ -33,11 +33,11 @@ def gaze(x0, dx, y0, dy):
     y1 = y0 + dy
 
     loc = get(x1, y1)
-    if loc == '.':
+    if loc == ".":
         return gaze(x1, dx, y1, dy)
-    if loc == '#':
+    if loc == "#":
         return 1
-    if loc == 'L':
+    if loc == "L":
         return 0
     return 0
 

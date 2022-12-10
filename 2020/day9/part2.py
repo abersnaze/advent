@@ -24,6 +24,7 @@ def state():
     # print(pre_list, post_list)
     pass
 
+
 print(content)
 
 state()
@@ -53,7 +54,7 @@ while post_list:
 
 
 for low in range(len(content)):
-    for high in range(low+1, len(content)):
+    for high in range(low + 1, len(content)):
         sublist = content[low:high]
         f = sum(sublist)
         if f > nxt:

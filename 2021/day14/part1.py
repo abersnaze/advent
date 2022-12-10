@@ -13,14 +13,14 @@ next(lines)
 
 rules = {}
 for line in lines:
-    input, output = line.split(' -> ')
+    input, output = line.split(" -> ")
     rules[input] = input[0] + output
 
 
 def apply(t: str):
     nxt = ""
-    for i in range(0, len(t)-1):
-        x = t[i:i+2]
+    for i in range(0, len(t) - 1):
+        x = t[i : i + 2]
         if x in rules:
             nxt += rules[x]
     return nxt + x[1]

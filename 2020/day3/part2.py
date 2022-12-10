@@ -5,6 +5,7 @@ import re
 
 content = sys.stdin.readlines()
 
+
 def decent(delta):
     loc = (0, 0)
 
@@ -12,10 +13,11 @@ def decent(delta):
     while loc[1] < len(content):
         row = content[loc[1]]
         terrain = row[loc[0] % (len(row) - 1)]
-        if terrain == '#':
+        if terrain == "#":
             tree_count += 1
         loc = loc[0] + delta[0], loc[1] + delta[1]
     return tree_count
+
 
 # Right 1, down 1.
 a = decent((1, 1))
@@ -28,5 +30,5 @@ d = decent((7, 1))
 # Right 1, down 2.
 e = decent((1, 2))
 
-print(a,b,c,d,e)
-print(a*b*c*d*e)
+print(a, b, c, d, e)
+print(a * b * c * d * e)

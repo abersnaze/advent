@@ -8,7 +8,12 @@ from enum import Enum
 from itertools import islice
 
 lines = map(lambda x: x.strip(), fileinput.input())
-def zero(): return 0
+
+
+def zero():
+    return 0
+
+
 today = defaultdict(zero)
 
 for age in next(lines).split(","):
@@ -18,7 +23,7 @@ print(today)
 
 for day in range(1, 81):
     print(day, today)
-    
+
     tomorrow = defaultdict(zero)
     for age, count in today.items():
         if age == 0:
@@ -26,7 +31,7 @@ for day in range(1, 81):
             tomorrow[8] += count
         else:
             tomorrow[age - 1] += count
-    
+
     today = tomorrow
 
 print(sum(today.values()))
