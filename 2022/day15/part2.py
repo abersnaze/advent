@@ -48,14 +48,14 @@ def splice(range_start, range_end, xmin, xmax):
         yield (xmax, range_end)
 
 
-def not_present(ry):
+def present(ry):
     alloweds = [(_min, _max)]
     for sx, sy, dst in sensors:
         size = dst - (sy - ry if sy > ry else ry - sy)
         if size < 1:
             continue
         rx_min = sx - size
-        rx_max = sx + size
+        rx_max = sx + size + 1
         # print("gap", rx_min, rx_max)
 
         new_alloweds = []
@@ -66,12 +66,12 @@ def not_present(ry):
 
     # no invert the allowed into not allowed
     for s, e in alloweds:
-        yield from range(s + 1, e)
+        yield from range(s, e)
 
 
 # print("allowed", row, list(not_present(11)))
 for row in range(_min, _max):
-    possible = list(not_present(row))
+    possible = list(present(row))
     if possible:
         print("freq", row + possible[0] * 4_000_000)
         exit(0)

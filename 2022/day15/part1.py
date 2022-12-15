@@ -34,10 +34,10 @@ for line in lines:
 
 def splice(range_start, range_end, xmin, xmax):
     # if it doesn't overlap
-    if range_end <= xmin:
+    if range_end < xmin:
         yield (range_start, range_end)
         return
-    if xmax <= range_start:
+    if xmax < range_start:
         yield (range_start, range_end)
         return
     # if it does
@@ -54,7 +54,7 @@ def not_present(ry):
         if size < 1:
             continue
         rx_min = sx - size
-        rx_max = sx + size
+        rx_max = sx + size + 1
         print("gap", rx_min, rx_max)
 
         new_alloweds = []
@@ -68,7 +68,7 @@ def not_present(ry):
     prev = None
     for allowed in alloweds:
         if prev:
-            not_allowed += allowed[0] - prev[1]
+            not_allowed += allowed[0] - prev[1] - 1
         prev = allowed
     return not_allowed
 
