@@ -33,7 +33,7 @@ rock_shapes = [
 ]
 
 jets = list(map(lambda x: x.strip(), fileinput.input()))[0]
-_h = len(jets)*10
+_h = len(jets) * 10
 print(_h)
 _chamber = [127 for _ in range(_h)]
 
@@ -121,10 +121,12 @@ def settle_rock():
         chamber_row = chamber(i + rock_y)
         chamber(i + rock_y, chamber_row | rock_shape[i])
 
+
 start_loop_search = 100
 
+
 def scan_for_loops():
-    print('.', end='')
+    print(".", end="")
     matches = []
     lookback = chamber_height - start_loop_search
     seed = chamber(lookback)
@@ -154,6 +156,7 @@ loop_start = None
 loop_size = None
 skip_height = 0
 loop_applied = False
+
 
 def has_loop_repeat():
     for i in range(loop_size):
