@@ -5,12 +5,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Current File",
+      "name": "example1",
       "type": "python",
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "args": ["example1.txt"]
+      "args": ["day23/example1.txt"]
+    },
+    {
+      "name": "example2",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": ["day23/example2.txt"]
+    },
+    {
+      "name": "input",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": ["day23/input.txt"]
     }
   ]
 }
